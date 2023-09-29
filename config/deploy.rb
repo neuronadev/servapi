@@ -5,6 +5,12 @@ set :application, "servapi"
 set :repo_url, "https://github.com/neuronadev/servapi.git"
 set :rvm_ruby_version, "ruby-3.0.0"
 set :default_env, { rvm_bin_path: "/usr/share/rvm/bin" }
+set :branch, "main"
+set :deploy_to, "/home/servapi/app/"
+set :passenger_restart_with_touch, true
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+# reload application after successful deploy
+after 'deploy:publishing', 'application:reload'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
